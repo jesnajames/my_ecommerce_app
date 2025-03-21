@@ -19,7 +19,6 @@ const ProductDetails = () => {
         const fetchedProduct = await fetchProductById(id);
         setProduct(fetchedProduct);
         setLoading(false);
-
         if (fetchedProduct) {
           const products = await fetchProducts(fetchedProduct.category);
           setRelatedProducts(products.filter(p => p.id !== fetchedProduct.id));

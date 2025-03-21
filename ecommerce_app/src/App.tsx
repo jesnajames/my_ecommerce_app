@@ -48,7 +48,8 @@ function App() {
             <Navbar/>
           <Routes>
             <Route path="/signup" element={<SignUp/>}/>
-            <Route path="signin" element={<SignIn/>}/>
+            <Route path="/signin" element={<SignIn/>}/>
+            <Route path="/login" element={<SignIn/>}/>
             <Route path="/" element={
               <PrivateRoute>
                 <main className='flex-grow'>
@@ -70,7 +71,7 @@ function App() {
               </PrivateRoute>
             } />
             <Route 
-            path="/products/:id"
+            path="/product/:id"
             element={
               <PrivateRoute>
                 <ProductDetails />
