@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary/90 text-white px-4 py-2 rounded-lg 
+    hover:scale-102 hover:shadow-lg transition-all duration-300 ease-out;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 
+    hover:scale-102 p-4;
+  }
+
+  .input-field {
+    @apply border border-gray-200 rounded-lg px-4 py-2 focus:outline-none 
+    focus:ring-2 focus:ring-primary/50 w-full;
+  }
+}
+
+@layer utilities {
+  .scale-102 {
+    transform: scale(1.02);
+  }
+}
