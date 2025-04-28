@@ -1,7 +1,38 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://gdvykpwmyuurrufwiuzz.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdkdnlrcHdteXV1cnJ1ZndpdXp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1NzI3MjYsImV4cCI6MjA1NzE0ODcyNn0.Q1QcqgKMnjgaHvQ_6r3DwH5poa1dIdYXKRNFDjGk7cM';
-const supabaseServiceRoleKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdkdnlrcHdteXV1cnJ1ZndpdXp6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MTU3MjcyNiwiZXhwIjoyMDU3MTQ4NzI2fQ.2fp9358MitVwqcMvrbCZgbsMPOnyEukya7e6DTpQLq4';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseServiceRoleKey = import.meta.env.VITE_SUPABASE_SERVICE_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    db: {
+      schema: 'public',
+    },
+    global: {
+      headers: { 'X-Client-Info': 'your-app-name' }
+    },
+    auth: {
+      persistSession: false,
+      detectSessionInUrl: false
+    },
+    // Enable error details
+    realtime: {
+      logLevel: 'debug'
+    }
+  });
+export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey, {
+    db: {
+      schema: 'public',
+    },
+    global: {
+      headers: { 'X-Client-Info': 'your-app-name' }
+    },
+    auth: {
+      persistSession: false,
+      detectSessionInUrl: false
+    },
+    // Enable error details
+    realtime: {
+      logLevel: 'debug'
+    }
+  })

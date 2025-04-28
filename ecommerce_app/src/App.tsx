@@ -19,7 +19,7 @@ import './App.css';
 import {categories} from './data/categories';
 import CategoryFilter from './components/CategoryFilter';
 
-const stripePromise = loadStripe("NA");
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
