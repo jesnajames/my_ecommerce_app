@@ -12,6 +12,7 @@ interface Order {
   shipping_address: string;
   shipping_city: string;
   shipping_state: string;
+  shippin_country: string;
   shipping_postal_code: string;
 }
 
