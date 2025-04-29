@@ -1,11 +1,14 @@
 import React from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 interface OrderConfirmationProps {
   orderId: string;
 }
 
 const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ orderId }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="text-center py-8">
       <FaCheckCircle className="text-green-500 text-6xl mx-auto mb-4" />
@@ -17,10 +20,16 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ orderId }) => {
         Order ID: <span className="font-semibold">{orderId}</span>
       </p>
       <div className="space-y-4">
-        <button className="btn-primary w-full">
+        <button 
+          className="btn-primary w-full"
+          onClick={() => navigate(`/track-order/${orderId}`)}
+        >
           Track Order
         </button>
-        <button className="btn-secondary w-full">
+        <button 
+          className="btn-secondary w-full"
+          onClick={() => navigate('/')}
+        >
           Continue Shopping
         </button>
       </div>

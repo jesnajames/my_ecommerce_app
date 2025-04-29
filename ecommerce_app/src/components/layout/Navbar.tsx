@@ -49,10 +49,17 @@ const Navbar: React.FC = () => {
 
             <div className="flex items-center space-x-4">
               {user ? (
+                
                 <div className="flex items-center space-x-4">
                   <span className="text-white">
                     {user.email}
                   </span>
+                  <button 
+                    className="text-white hover:text-[#FF9900]"
+                    onClick={() => navigate('/orders')}
+                  >
+                    Orders
+                  </button>
                   <button 
                     className="text-white hover:text-[#FF9900]"
                     onClick={handleSignOut}

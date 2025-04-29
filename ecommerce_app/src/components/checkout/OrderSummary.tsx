@@ -15,23 +15,23 @@ const OrderSummary: React.FC = () => {
       <div className="space-y-3">
         <div className="flex justify-between">
           <span>Subtotal</span>
-          <span>${cart.total.toFixed(2)}</span>
+          <span>${cart.total?.toFixed(2)}</span>
         </div>
         
         <div className="flex justify-between">
           <span>Shipping</span>
-          <span>${shipping.toFixed(2)}</span>
+          <span>${shipping?.toFixed(2)}</span>
         </div>
         
         <div className="flex justify-between">
           <span>Tax (10%)</span>
-          <span>${tax.toFixed(2)}</span>
+          <span>${tax?.toFixed(2)}</span>
         </div>
         
         <div className="border-t pt-3">
           <div className="flex justify-between font-semibold">
             <span>Total</span>
-            <span>${finalTotal.toFixed(2)}</span>
+            <span>${finalTotal?.toFixed(2)}</span>
           </div>
         </div>
       </div>

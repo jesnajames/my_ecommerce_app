@@ -13,6 +13,9 @@ import SignUp from './components/SignUp';
 import PrivateRoute from './components/PrivateRoute';
 import ProductGrid from './components/products/ProductGrid';
 import CheckoutPage from './components/checkout/CheckoutPage';
+import TrackOrder from './components/orders/TrackOrder';
+import OrderList from './components/orders/OrderList';
+
 import {fetchProducts} from './utils/productUtils';
 import { Product } from './types/product';
 import './App.css';
@@ -26,7 +29,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-
   useEffect(() => {
     const loadProducts = async () => {
       console.log("Fetching results..")
@@ -38,60 +40,73 @@ function App() {
     loadProducts();
   }, [selectedCategory]);
 
-
-
   return (
     <Router>
       <AuthProvider>
         <CartProvider>
           <Elements stripe={stripePromise}>
             <Navbar/>
-          <Routes>
-            <Route path="/signup" element={<SignUp/>}/>
-            <Route path="/signin" element={<SignIn/>}/>
-            <Route path="/login" element={<SignIn/>}/>
-            <Route path="/" element={
-              <PrivateRoute>
-                <main className='flex-grow'>
-                  <h1 className='text-3xl font-bold'>Featured Products</h1>
+            <Routes>
+              <Route path="/signup" element={<SignUp/>}/>
+              <Route path="/signin" element={<SignIn/>}/>
+              <Route path="/login" element={<SignIn/>}/>
+              <Route 
+                path="/orders"
+                element={
+                  <PrivateRoute>
+                    <OrderList />
+                  </PrivateRoute>
+                } 
+              />
+              <Route path="/" element={
+                <PrivateRoute>
+                  <main className='flex-grow'>
+                    <h1 className='text-3xl font-bold'>Featured Products</h1>
                     <CategoryFilter 
-                        categories={categories}
-                        selectedCategory={selectedCategory}
-                        onCategoryChange={setSelectedCategory}
-                        />
-                        {loading ? (
-                          <div className="flex justify-center items-center min-h-screen">
-                          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
-                        </div>
-                        ): (
-                          <ProductGrid products={products}/>
-                        )}
-
-                </main>
-              </PrivateRoute>
-            } />
-            <Route 
-            path="/product/:id"
-            element={
-              <PrivateRoute>
-                <ProductDetails />
-              </PrivateRoute>
-            }
-
-            />
-            <Route 
-            path="/checkout"
-            element = {
-            <PrivateRoute>
-              <CheckoutPage/>
-              </PrivateRoute>
-            } />
-          </Routes>
+                      categories={categories}
+                      selectedCategory={selectedCategory}
+                      onCategoryChange={setSelectedCategory}
+                    />
+                    {loading ? (
+                      <div className="flex justify-center items-center min-h-screen">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+                      </div>
+                    ): (
+                      <ProductGrid products={products}/>
+                    )}
+                  </main>
+                </PrivateRoute>
+              } />
+              <Route 
+                path="/product/:id"
+                element={
+                  <PrivateRoute>
+                    <ProductDetails />
+                  </PrivateRoute>
+                }
+              />
+              <Route 
+                path="/checkout"
+                element={
+                  <PrivateRoute>
+                    <CheckoutPage/>
+                  </PrivateRoute>
+                } 
+              />
+              <Route 
+                path="/track-order/:orderId"
+                element={
+                  <PrivateRoute>
+                    <TrackOrder />
+                  </PrivateRoute>
+                } 
+              />
+            </Routes>
           </Elements>
-      </CartProvider>
+        </CartProvider>
       </AuthProvider>
     </Router>
   );
-};
+}
 
 export default App;
