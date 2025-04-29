@@ -8,6 +8,7 @@ interface Order {
   created_at: string;
   status: string;
   amount: number;
+  tax: number;
 }
 
 const OrderList: React.FC = () => {
