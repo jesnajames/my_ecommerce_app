@@ -1,11 +1,9 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
 import {Elements} from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import ProductDetails from './components/products/ProductDetails';
-import Footer from './components/Footer/Footer';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './contexts/AuthContext';
 import SignIn from './components/SignIn';
